@@ -19,7 +19,7 @@ def main():
             autor = input("Podaj autora książki: ")
             strony = int(input("Podaj strony"))
             servicbook.Add_book( tytul, autor, strony)
-            print("Książka została dodana do bazy danych.")
+
 
         elif choice == "2":
             usun_opcja = input("Usunąć książkę wg ID czy tytułu? (ID/TYTUŁ): ").upper()
@@ -36,13 +36,18 @@ def main():
             imie = input("Podaj imię nowego klienta: ")
             nazwisko = input("Podaj nazwisko nowego klienta: ")
             email = input("Podaj email nowego klienta:")
-            numer = float(input("Podaj numer :"))
-            ulica = input("Podaj ulica:")
-            miasto = input("Podaj miasto:")
-            kraj = input("Podaj kraj:")
+            while True:
+                numer = float(input("Podaj numer :"))
+                if numer != 9:
+                    print(f"podany {numer} sie nie zgadza. Sproboj ponownie")
+                else:
 
-            id_klienta = serviceuser.dodaj_dane_klienta(imie, nazwisko, email, numer, ulica, miasto, kraj)
-            print(f"Nowy klient został zarejestrowany. ID klienta: {id_klienta}")
+                    ulica = input("Podaj ulica:")
+                    miasto = input("Podaj miasto:")
+                    kraj = input("Podaj kraj:")
+
+                    id_klienta = serviceuser.dodaj_dane_klienta(imie, nazwisko, email, numer, ulica, miasto, kraj)
+                    print(f"Nowy klient został zarejestrowany. ID klienta: {id_klienta}")
 
         elif choice == "4":
             usun_opcja = input("Usunąć dane klienta wg ID czy imienia? (ID/IMIĘ): ").upper()
@@ -54,7 +59,6 @@ def main():
                 serviceuser.usun_dane_klienta(imie=imie)
             else:
                 print("Nieprawidlowa opcja")
-            print("Dane klienta zostaly usuniete")
         elif choice == "5":
             id_klienta = int(input("Podaj id klienta:"))
             tytuly=[]
@@ -64,7 +68,9 @@ def main():
                     break
                 tytuly.append(tytul)
             loan_book.borrow_books(id_klienta,*tytuly)
-            print("Ksiazka została wyporzyczona")
+
+
+
 
         elif choice == "6":
              id_klienta = int(input("Podaj ID klienta:"))
@@ -75,7 +81,7 @@ def main():
             print("do widzenia")
             break
         else:
-            print("nieprawidlowa Opcja")
+            print("nieprawidlowa Opcja.")
 
 
 if __name__ == "__main__":

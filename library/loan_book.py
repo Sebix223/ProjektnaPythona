@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 from datetime import date
+from return_book_dec import dekorator
 def borrow_books(customer_id, *args):
     df=pd.read_csv('database/book.csv')
     if os.path.exists("dataset"):
@@ -14,11 +15,10 @@ def borrow_books(customer_id, *args):
                 print(book['TITLE'])
                 print(book['PAGES'])
                 file.write(f"Author:{book['AUTHOR']},Title:{book['TITLE']},Pages:{book['PAGES']},Borrowed:{date.today()},returned=False \n")
-
     else:
         print("Nieprawidlowe dane")
 
-
+@dekorator
 def return_book(customer_id, book):
     if os.path.exists(f"dataset/{customer_id}.txt"):
         with open(f"dataset/{customer_id}.txt", "r") as file:
