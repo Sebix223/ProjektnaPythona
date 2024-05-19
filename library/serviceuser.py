@@ -2,22 +2,10 @@ import pandas as pd
 import os
 import random
 from datetime import date
-import is_valid_phone as ivp
+
 database='DATABASE'
 
 def generuj_id_klienta():
-    """
-        Generates a unique client ID.
-
-        The function randomizes an integer from 1000 to 9999
-        and checks whether the drawn number is not already used as the customer ID
-        in the customer database. If there is one, it randomly draws a new number until it finds it
-        unique identifier.
-
-        Returns:
-            int: Unique client identifier.
-        """
-
 
 
     ID_number=random.randint(1000, 9999)
@@ -74,6 +62,7 @@ def usun_dane_klienta(ID=None, imie=None):
 
         df_customer.to_csv('database/customer.csv', index=False)
         df_address.to_csv('database/address.csv', index=False)
+        print("Dane klienta zostały usunięte pomyślnie.")
     except FileNotFoundError:
         print('Plik bazy danych nie zostal odnaleziony.')
     except ValueError as e:

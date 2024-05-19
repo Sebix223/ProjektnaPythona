@@ -35,22 +35,29 @@ def main():
         elif choice == "3":
             imie = input("Podaj imię nowego klienta: ")
             nazwisko = input("Podaj nazwisko nowego klienta: ")
-            email = input("Podaj email nowego klienta:")
             while True:
-                numer = float(input("Podaj numer :"))
-                if numer != 9:
+                email = input("Podaj email nowego klienta:")
+                if "@wp.pl" in email or "@gmail.pl" in email:
+                    break
+                else:
+                    print("Email musi zawierać @wp.pl lub @gmail.pl. Spróbuj ponownie.")
+
+            while True:
+                numer = int(input("Podaj numer :"))
+                if len(str(numer)) != 9:
                     print(f"podany {numer} sie nie zgadza. Sproboj ponownie")
                 else:
+                    break
+            ulica = input("Podaj ulica:")
+            miasto = input("Podaj miasto:")
+            kraj = input("Podaj kraj:")
 
-                    ulica = input("Podaj ulica:")
-                    miasto = input("Podaj miasto:")
-                    kraj = input("Podaj kraj:")
-
-                    id_klienta = serviceuser.dodaj_dane_klienta(imie, nazwisko, email, numer, ulica, miasto, kraj)
-                    print(f"Nowy klient został zarejestrowany. ID klienta: {id_klienta}")
+            id_klienta = serviceuser.dodaj_dane_klienta(imie, nazwisko, email, numer, ulica, miasto, kraj)
+            print(f"Nowy klient został zarejestrowany. ID klienta: {id_klienta}")
 
         elif choice == "4":
             usun_opcja = input("Usunąć dane klienta wg ID czy imienia? (ID/IMIĘ): ").upper()
+
             if usun_opcja == "ID":
                 identyfikator = int(input("Podaj ID klienta do usunięcia: "))
                 serviceuser.usun_dane_klienta(ID=identyfikator)
